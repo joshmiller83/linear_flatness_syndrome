@@ -1,15 +1,7 @@
 <?php
 // index.php
-$link = new PDO("mysql:host=localhost;dbname=blog_db", 'root');
+require_once 'model.php';
 
-$result = $link->query('SELECT id, title FROM post');
+$posts = get_all_posts();
 
-$posts = array();
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-  $posts[] = $row;
-}
-
-$link = null;
-
-// include the HTML presentation code
 require 'templates/list.php';
